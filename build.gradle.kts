@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.0.21"
+    kotlin("jvm") version "2.1.0"
 }
 
 group = "com.github.chosegood"
@@ -11,11 +11,14 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation("io.strikt:strikt-core:0.34.0")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    test { useJUnitPlatform() }
+    wrapper { gradleVersion = "8.11.1" }
 }
+
 kotlin {
     jvmToolchain(21)
 }
