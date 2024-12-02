@@ -5,8 +5,7 @@ import com.github.chosegood.aoc.InputReader
 
 class Day01 : AdventOfCode {
 
-    companion object {
-        fun part1(input: List<String>): Int {
+    override fun part1(input: List<String>): Int {
             val map: List<Pair<Int, Int>> = input.map {
                 val split = it.split(" ").filter(String::isNotBlank)
                 split[0].toInt() to split[1].toInt()
@@ -24,27 +23,26 @@ class Day01 : AdventOfCode {
                 sum += i
             }
             return sum
+    }
+
+    override fun part2(input: List<String>): Int {
+        val map: List<Pair<Int, Int>> = input.map {
+            val split = it.split(" ").filter(String::isNotBlank)
+            split[0].toInt() to split[1].toInt()
+        }
+        val firstList = map.map { it.first }
+        val secondList = map.map { it.second }
+
+        return firstList.sumOf {
+            val count = secondList.count { n -> n == it }
+            it * count
         }
 
-        fun part2(input: List<String>): Int {
-
-            val map: List<Pair<Int, Int>> = input.map {
-                val split = it.split(" ").filter(String::isNotBlank)
-                split[0].toInt() to split[1].toInt()
-            }
-            val firstList = map.map { it.first }
-            val secondList = map.map { it.second }
-
-            return firstList.sumOf {
-                val count = secondList.count { n -> n == it }
-                it * count
-            }
-        }
     }
 
 }
 
 fun main() {
-    println(Day01.part1(InputReader.readInput("D0101_input.txt")))
-    println(Day01.part2(InputReader.readInput("D0102_input.txt")))
+    println(Day01().part1(InputReader.readInput("D0101_input.txt")))
+    println(Day01().part2(InputReader.readInput("D0102_input.txt")))
 }

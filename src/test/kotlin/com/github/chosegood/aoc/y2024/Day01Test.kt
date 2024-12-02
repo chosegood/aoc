@@ -17,7 +17,7 @@ class Day01Test {
             "3   9",
             "3   3",
         )
-        expectThat(Day01.part1(input))
+        expectThat(Day01().part1(input))
             .isEqualTo(11)
     }
 
@@ -31,7 +31,7 @@ class Day01Test {
             "3   9",
             "3   3",
         )
-        expectThat(Day01.part2(input))
+        expectThat(Day01().part2(input))
             .isEqualTo(31)
     }
 }

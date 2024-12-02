@@ -1,6 +1,6 @@
 package com.github.chosegood.aoc
 
 interface AdventOfCode {
-    fun partOne(input: String): Any = TODO("Implement part 1")
-    fun partTwo(input: String): Any = TODO("Implement part 2")
+    fun part1(input: List<String>): Int
+    fun part2(input: List<String>): Int
 }
