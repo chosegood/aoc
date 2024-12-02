@@ -1,8 +1,9 @@
 package com.github.chosegood.aoc.y2024
 
-import com.github.chosegood.aoc.Util
+import com.github.chosegood.aoc.AdventOfCode
+import com.github.chosegood.aoc.InputReader
 
-class Day01 {
+class Day01 : AdventOfCode {
 
     companion object {
         fun part1(input: List<String>): Int {
@@ -44,6 +45,6 @@ class Day01 {
 }
 
 fun main() {
-    println(Day01.part1(Util.readInput("D0101_input.txt")))
-    println(Day01.part2(Util.readInput("D0102_input.txt")))
+    println(Day01.part1(InputReader.readInput("D0101_input.txt")))
+    println(Day01.part2(InputReader.readInput("D0102_input.txt")))
 }

@@ -5,10 +5,10 @@ import kotlin.io.path.Path
 import kotlin.io.path.readText
 
 
-class Util {
+class InputReader {
     companion object {
         fun readInput(fileName: String): List<String> {
-            val resource = Util::class.java.classLoader.getResource(fileName)
+            val resource = InputReader::class.java.classLoader.getResource(fileName)
                 ?: throw FileNotFoundException("$fileName not found")
             return Path(resource.path).readText().trim().lines()
         }
