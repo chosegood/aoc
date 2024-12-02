@@ -4,7 +4,6 @@ import com.github.chosegood.aoc.y2024.Day01
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
-import strikt.assertions.isNotEqualTo
 
 class Day01Test {
 
@@ -19,7 +18,7 @@ class Day01Test {
             "3   3",
         )
         expectThat(Day01().part1(input))
-            .isNotEqualTo(11)
+            .isEqualTo(11)
     }
 
     @Test
