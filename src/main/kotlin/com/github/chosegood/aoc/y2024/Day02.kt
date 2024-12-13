@@ -6,34 +6,26 @@ import kotlin.math.abs
 
 class Day02 : AdventOfCode {
 
-    override fun part1(input: List<String>): Long {
-        return input.sumOf { it ->
+    private fun allIncreasing(levels: List<Long>) = levels.zipWithNext { a, b -> a > b }.all { it }
+    private fun allDecreasing(levels: List<Long>) = levels.zipWithNext { a, b -> a < b }.all { it }
+    private fun levelsSafe(levels: List<Long>): Boolean {
+        val stepDifferences = levels.zipWithNext { a, b -> abs(a - b) }
+        val levelsSafe = stepDifferences.all { it <= 3 } && (allIncreasing(levels) || allDecreasing(levels))
+        return levelsSafe
+    }
+
+    override fun part1(input: List<String>): Long = input.sumOf { it ->
+        val levels = it.split(" ").map { it.toLong() }
+        if (levelsSafe(levels)) 1L else 0L
+    }
+
+    override fun part2(input: List<String>): Long = input.sumOf { it ->
             val levels = it.split(" ").map { it.toLong() }
-            val levelsSafe = safeIncreasing(levels) || safeDecreasing(levels)
-            if (levelsSafe) 1L else 0L
+        val anySafeSkippingAnElement = levels.indices.any { i ->
+            levelsSafe(levels.toMutableList().apply { removeAt(i) })
         }
+        if (anySafeSkippingAnElement) 1L else 0L
     }
-
-    private fun safeIncreasing(levels: List<Long>): Boolean = levels.windowed(2, 1).all {
-        val left = it[0]
-        val right = it[1]
-        left > right && abs(left - right) in 1..3
-    }
-
-    private fun safeDecreasing(levels: List<Long>): Boolean = levels.windowed(2, 1).all {
-        val left = it[0]
-        val right = it[1]
-        left < right && abs(left - right) in 1..3
-        }
-
-    override fun part2(input: List<String>): Long {
-        return input.sumOf { it ->
-            val levels = it.split(" ").map { it.toLong() }
-            val levelsSafe = safeIncreasing(levels) || safeDecreasing(levels)
-            if (levelsSafe) 1L else 0L
-        }
-    }
-
 }
 
 fun main() {
