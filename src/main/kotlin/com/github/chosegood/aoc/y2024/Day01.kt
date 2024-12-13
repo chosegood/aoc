@@ -5,41 +5,29 @@ import com.github.chosegood.aoc.InputReader
 
 class Day01 : AdventOfCode {
 
-    override fun part1(input: List<String>): Int {
-            val map: List<Pair<Int, Int>> = input.map {
-                val split = it.split(" ").filter(String::isNotBlank)
-                split[0].toInt() to split[1].toInt()
-            }
-            val firstList = map.map { it.first }.sorted()
-            val secondList = map.map { it.second }.sorted()
+    override fun part1(input: List<String>): Long {
+        val (firstList, secondList) = input.map {
+            val split = it.split(" ").filter(String::isNotBlank)
+            split[0].toLong() to split[1].toLong()
+        }.unzip()
 
-            var sum = 0
-            for (index in 0 until firstList.size.coerceAtMost(secondList.size)) {
-                val i = if (firstList[index] > secondList[index]) {
-                    firstList[index] - secondList[index]
-                } else {
-                    secondList[index] - firstList[index]
-                }
-                sum += i
+        return firstList.sorted()
+            .zip(secondList.sorted())
+            .sumOf { (first, second) ->
+                if (first > second) first - second else second - first
             }
-            return sum
     }
 
-    override fun part2(input: List<String>): Int {
-        val map: List<Pair<Int, Int>> = input.map {
+    override fun part2(input: List<String>): Long {
+        val (firstList, secondList) = input.map {
             val split = it.split(" ").filter(String::isNotBlank)
-            split[0].toInt() to split[1].toInt()
-        }
-        val firstList = map.map { it.first }
-        val secondList = map.map { it.second }
+            split[0].toLong() to split[1].toLong()
+        }.unzip()
 
         return firstList.sumOf {
-            val count = secondList.count { n -> n == it }
-            it * count
+            it * secondList.count { n -> n == it }
         }
-
     }
-
 }
 
 fun main() {

@@ -1,6 +1,5 @@
-package com.github.chosegood.aoc.y2024.y2024
+package com.github.chosegood.aoc.y2024
 
-import com.github.chosegood.aoc.y2024.Day01
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
